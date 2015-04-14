@@ -1,0 +1,12 @@
+
+
+Importing file: C:\Users\jcervantes\IBM\IntegrationToolkit90\workspace\LoginValidation\LoginValidation.wsdl
+
+Copying source WSDL LoginValidation.wsdl to LoginValidation.wsdl.
+The WSDL import will proceed with bindings LoginValidationHttpBinding.
+Creating wsdl schema document for platform:/resource/LoginValidation/LoginValidation.wsdl.
+Parsing wsdl binding {http://LoginValidation}LoginValidationHttpBinding.
+Parsing wsdl binding input operation1.
+Parsing wsdl binding output operation1.
+Processing doc style for operation operation1.
+Populating WSDL schema platform:/resource/LoginValidation/LoginValidation.wsdl.
