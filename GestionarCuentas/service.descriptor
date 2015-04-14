@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service:services xmlns:service="http://com.ibm.etools.mft.service">
+  <service:service implementation="gen/GestionarCuentas.msgflow" name="GestionarCuentas" portType="GestionarCuentas" wsdlFileName="GestionarCuentas.wsdl">
+    <service:operations>
+      <service:operation name="IIBIntegration" type="request-response">
+        <service:flows>
+          <service:flow location="gen/IIBIntegration_Request_Response.subflow" type="Request_Response"/>
+        </service:flows>
+      </service:operation>
+    </service:operations>
+    <service:errors>
+      <service:flows>
+        <service:flow location="gen/GestionarCuentasInputHTTPTimeoutHandler.subflow" type="Timeout"/>
+        <service:flow location="gen/GestionarCuentasInputFailureHandler.subflow" type="Failure"/>
+        <service:flow location="gen/GestionarCuentasInputCatchHandler.subflow" type="Catch"/>
+      </service:flows>
+    </service:errors>
+  </service:service>
+</service:services>

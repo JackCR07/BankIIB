@@ -1,0 +1,12 @@
+
+
+Importing file: C:\Users\lprado\Documents\GBM\IIB\workspace\CreateTransaccion\CreateTransaccion.wsdl
+
+Copying source WSDL CreateTransaccion.wsdl to CreateTransaccion.wsdl.
+The WSDL import will proceed with bindings CreateTransaccionHttpBinding.
+Creating wsdl schema document for platform:/resource/CreateTransaccion/CreateTransaccion.wsdl.
+Parsing wsdl binding {http://CreateTransaccion}CreateTransaccionHttpBinding.
+Parsing wsdl binding input operation1.
+Parsing wsdl binding output operation1.
+Processing doc style for operation operation1.
+Populating WSDL schema platform:/resource/CreateTransaccion/CreateTransaccion.wsdl.

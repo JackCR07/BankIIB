@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://GetCuentas" xmlns:tns="http://GetCuentas" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="operation1">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id_cliente" nillable="true" type="xsd:integer"/>
+                <xsd:element name="id_tipo_cuenta" nillable="true" type="xsd:integer"/>
+                <xsd:element name="fecha_mayor_a" nillable="true" type="xsd:string"/>
+                <xsd:element name="fecha_menor_a" nillable="true" type="xsd:string"/>
+                <xsd:element name="saldo_mayor_a" nillable="true" type="xsd:double"/>
+                <xsd:element name="saldo_menor_a" nillable="true" type="xsd:double"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+            <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="operation1Response">
+        <xsd:complexType>
+          <xsd:sequence>
+
+          	<xsd:element name="cuenta" type="tns:Cuenta" maxOccurs="unbounded"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+        
+            <xsd:complexType name="Cuenta">
+            	<xsd:sequence>
+            		<xsd:element name="id_cuenta" type="xsd:int"></xsd:element>
+            		<xsd:element name="tipo_cuenta" type="xsd:string"></xsd:element>
+            		<xsd:element name="saldo" type="xsd:double"></xsd:element>
+            		<xsd:element name="numero_cuenta"
+            			type="xsd:string">
+            		</xsd:element>
+            		<xsd:element name="fecha_creacion" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,13 @@
+
+
+Importing file: C:\Users\lprado\Documents\GBM\IIB\workspace\GetCuentas\GetCuentas.wsdl
+
+Copying source WSDL GetCuentas.wsdl to GetCuentas.wsdl.
+The WSDL import will proceed with bindings GetCuentasHttpBinding.
+Creating wsdl schema document for platform:/resource/GetCuentas/GetCuentas.wsdl.
+Parsing wsdl binding {http://GetCuentas}GetCuentasHttpBinding.
+Parsing wsdl binding input operation1.
+Parsing wsdl binding output operation1.
+Parsing wsdl binding fault operation1Fault1.
+Processing doc style for operation operation1.
+Populating WSDL schema platform:/resource/GetCuentas/GetCuentas.wsdl.

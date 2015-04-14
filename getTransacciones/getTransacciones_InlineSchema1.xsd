@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://getTransacciones" xmlns:tns="http://getTransacciones" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="operation1">
+        <xsd:complexType>
+          <xsd:sequence>
+                <xsd:element name="id_cuenta" nillable="true" type="xsd:int"/>
+                <xsd:element name="id_tipo_transaccion" nillable="true" type="xsd:int"/>
+                <xsd:element name="fecha_mov_mayor_a" nillable="true" type="xsd:string"/>
+                <xsd:element name="fecha_mov_menor_a" nillable="true" type="xsd:string"/>
+                <xsd:element name="mon_trans_mayor_a" nillable="true" type="xsd:double"/>
+                <xsd:element name="mon_trans_menor_a" nillable="true" type="xsd:double"/>
+                <xsd:element name="n_trans_mayor_a" nillable="true" type="xsd:int"/>
+                <xsd:element name="n_trans_menor_a" nillable="true" type="xsd:int"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+            <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="operation1Response">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="transaccion" nillable="true" type="tns:Transaccion" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+        
+            <xsd:complexType name="Transaccion">
+            	<xsd:sequence>
+            		<xsd:element name="id_transaccion" type="xsd:int">
+            		</xsd:element>
+            		<xsd:element name="numero_transaccion"
+            			type="xsd:string">
+            		</xsd:element>
+            		<xsd:element name="monto" type="xsd:double"></xsd:element>
+            		<xsd:element name="fecha_transaccion"
+            			type="xsd:string">
+            		</xsd:element>
+            		<xsd:element name="tipo_transaccion"
+            			type="xsd:string">
+            		</xsd:element>
+            		<xsd:element name="id_cuenta_origen"
+            			type="xsd:int">
+            		</xsd:element>
+            		<xsd:element name="num_cuenta_origen"
+            			type="xsd:int">
+            		</xsd:element>
+            		<xsd:element name="id_cuenta_destino" type="xsd:int"></xsd:element>
+            		<xsd:element name="num_cuenta_destino" type="xsd:int"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+</xsd:schema>

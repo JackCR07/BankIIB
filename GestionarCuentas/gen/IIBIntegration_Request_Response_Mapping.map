@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="gen" version="8.0.4.0" xmlns="http://www.ibm.com/2008/ccl/Mapping" xmlns:map="gen">
+    <input path="/GestionarCuentas_InlineSchema1.xsd"/>
+    <output path="/GestionarCuentas_InlineSchema1.xsd"/>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="IIBIntegration_Request_Response_Mapping">
+        <input namespace="http://BAPPT" path="mb:msg(IIBIntegration,assembly,XMLNSC,Properties)"/>
+        <output namespace="http://BAPPT" path="mb:msg(IIBIntegrationResponse,assembly,XMLNSC,Properties)"/>
+        <move>
+            <input path="Properties"/>
+            <output path="Properties"/>
+        </move>
+        <move automap="true">
+            <input path="IIBIntegration/Cliente/nombre"/>
+            <output path="IIBIntegrationResponse/Resultado/Cliente/nombre"/>
+        </move>
+        <move automap="true">
+            <input path="IIBIntegration/Cliente/apellido"/>
+            <output path="IIBIntegrationResponse/Resultado/Cliente/apellido"/>
+        </move>
+        <move automap="true">
+            <input path="IIBIntegration/Cliente/cedula"/>
+            <output path="IIBIntegrationResponse/Resultado/Cliente/cedula"/>
+        </move>
+        <move automap="true">
+            <input path="IIBIntegration/Cliente/direccion"/>
+            <output path="IIBIntegrationResponse/Resultado/Cliente/direccion"/>
+        </move>
+        <move automap="true">
+            <input path="IIBIntegration/Cliente/fechaNacimiento"/>
+            <output path="IIBIntegrationResponse/Resultado/Cliente/fechaNacimiento"/>
+        </move>
+        <assign value="0">
+            <output path="IIBIntegrationResponse/Resultado/estado"/>
+        </assign>
+    </mappingDeclaration>
+</mappingRoot>

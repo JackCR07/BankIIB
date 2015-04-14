@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<discovery>
+    <discoveryConnection>
+        <connectionProperties>
+            <urlProperty>C:\Users\lprado\Documents\GBM\Proyecto Banca\BPM\Snapshots\Bank_App_Toolkit - v1.1.twx</urlProperty>
+        </connectionProperties>
+    </discoveryConnection>
+    <runtimeConnection/>
+    <filterProperties/>
+    <selectedObjects>
+        <IntegrationService>
+            <id>2066.8f0045a4-b667-4787-9585-58e3d07eeca0/1.6d2f26aa-55eb-4f64-a8fe-cd019f07d932</id>
+            <dataConfiguration>
+                <selectedObjectConfig>
+                    <version>1ca90528-0aba-4125-9909-2cc708fa35f5</version>
+                    <name>IIB Integration</name>
+                </selectedObjectConfig>
+            </dataConfiguration>
+        </IntegrationService>
+    </selectedObjects>
+    <selection>
+        <selectionProperties/>
+    </selection>
+    <outputProperties/>
+</discovery>

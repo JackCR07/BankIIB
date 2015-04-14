@@ -1,0 +1,14 @@
+
+
+Importing file: C:\Users\lprado\IBM\IntegrationToolkit90\workspace\GestionarCuentas\GestionarCuentas.wsdl
+
+Copying source WSDL GestionarCuentas.wsdl to GestionarCuentas.wsdl.
+The WSDL import will proceed with bindings GestionarCuentasHttpBinding.
+Creating wsdl schema document for file:///C:/Users/lprado/IBM/IntegrationToolkit90/workspace/GestionarCuentas/GestionarCuentas.wsdl.
+Parsing wsdl binding {http://BAPPT}GestionarCuentasHttpBinding.
+Parsing wsdl binding input IIBIntegration.
+Parsing wsdl binding output IIBIntegration.
+Processing doc style for operation IIBIntegration.
+Populating WSDL schema GestionarCuentas.xsd.
+Creating file GestionarCuentas.xsd in the workspace.
+Creating file GestionarCuentas_InlineSchema1.xsd in the workspace.

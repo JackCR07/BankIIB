@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/GestionarCuentasInputHTTPTimeoutHandler.subflow" nsPrefix="gen_GestionarCuentasInputHTTPTimeoutHandler.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="GestionarCuentasInputHTTPTimeoutHandler" bundleName="gen/GestionarCuentasInputHTTPTimeoutHandler" pluginId="GestionarCuentas"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/GestionarCuentas/icons/full/obj16/GestionarCuentasInputHTTPTimeoutHandler"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/GestionarCuentas/icons/full/obj30/GestionarCuentasInputHTTPTimeoutHandler"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="20,20">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="gen/GestionarCuentasInputHTTPTimeoutHandler" pluginId="GestionarCuentas"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="320,20">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="gen/GestionarCuentasInputHTTPTimeoutHandler" pluginId="GestionarCuentas"/>
+      </nodes>
+    </composition>
+    <propertyOrganizer/>
+  </eClassifiers>
+</ecore:EPackage>

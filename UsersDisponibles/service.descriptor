@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service:services xmlns:service="http://com.ibm.etools.mft.service">
+  <service:service implementation="gen/UsersDisponibles.msgflow" name="UsersDisponibles" portType="UsersDisponibles" wsdlFileName="UsersDisponibles.wsdl">
+    <service:operations>
+      <service:operation name="operation1" type="request-response">
+        <service:flows>
+          <service:flow location="gen/operation1_Request_Response.subflow" type="Request_Response"/>
+        </service:flows>
+      </service:operation>
+    </service:operations>
+    <service:errors>
+      <service:flows>
+        <service:flow location="gen/UsersDisponiblesInputHTTPTimeoutHandler.subflow" type="Timeout"/>
+        <service:flow location="gen/UsersDisponiblesInputFailureHandler.subflow" type="Failure"/>
+        <service:flow location="gen/UsersDisponiblesInputCatchHandler.subflow" type="Catch"/>
+      </service:flows>
+    </service:errors>
+  </service:service>
+</service:services>

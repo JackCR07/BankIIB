@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions name="GetCuentas" targetNamespace="http://GetCuentas" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://GetCuentas" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="GetCuentas_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="GetCuentasHttpBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  
+  
+  
+  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://GetCuentas">
+            <xsd:include schemaLocation="GetCuentas_InlineSchema1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="operation1RequestMsg">
+    <wsdl:part element="tns:operation1" name="operation1Parameters"/>
+  </wsdl:message>
+  <wsdl:message name="operation1ResponseMsg">
+    <wsdl:part element="tns:operation1Response" name="operation1Result"/>
+  </wsdl:message>
+    <wsdl:portType name="GetCuentas">
+    <wsdl:documentation/>
+    <wsdl:operation name="operation1">
+            <wsdl:input message="tns:operation1RequestMsg" name="operation1Request"/>
+            <wsdl:output message="tns:operation1ResponseMsg" name="operation1Response"/>
+        </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetCuentasHttpBinding" type="tns:GetCuentas">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="operation1">
+            <soap:operation soapAction="http://GetCuentas/operation1"/>
+            <wsdl:input name="operation1Request">
+                <soap:body use="literal"/>
+            </wsdl:input>
+      <wsdl:output name="operation1Response">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="operation1Fault1">
+        <soap:fault name="operation1Fault1" use="literal"/>
+      </wsdl:fault>
+        </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetCuentasHttpService">
+    <wsdl:port binding="tns:GetCuentasHttpBinding" name="GetCuentasHttpPort">
+      <soap:address location="http://localhost:7800/GetCuentas/GetCuentas"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
