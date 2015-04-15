@@ -50,7 +50,7 @@ public class Operation1_Request_Response_Create_Transaccion extends MbJavaComput
 			writer3.write("entre");
 			writer3.close();
 			MbElement idCuentaOrigenMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/id_cuenta_origen");;
-			MbElement idCuentaDestinoMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/id_cuenta_destino");
+			MbElement numCuentaDestinoMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/numero_cuenta_destino");
 			MbElement idTipoTransaccionMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/id_tipo_transaccion");
 			MbElement montoTransferidoMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/monto_transferido");
 			
@@ -60,12 +60,11 @@ public class Operation1_Request_Response_Create_Transaccion extends MbJavaComput
 			writer2.close();
 			//****************************Convertir los datos obtenidos a string*************************************
 			String idCuentaOrigenStr = idCuentaOrigenMb.getValueAsString();
-			String idCuentaDestinoStr = idCuentaDestinoMb.getValueAsString();
+			String CuentaDestinoStr = numCuentaDestinoMb.getValueAsString();
 			String idTipoTransaccionStr = idTipoTransaccionMb.getValueAsString();
 			String montoTransferidoStr = montoTransferidoMb.getValueAsString();
 			 
 			int idCuentaOrigen = Integer.parseInt(idCuentaOrigenStr);
-			int idCuentaDestino = Integer.parseInt(idCuentaDestinoStr);
 			int idTipoTransaccion = Integer.parseInt(idTipoTransaccionStr);
 			double montoTransferido = Double.parseDouble(montoTransferidoStr);
 			
@@ -83,7 +82,7 @@ public class Operation1_Request_Response_Create_Transaccion extends MbJavaComput
 			String query = "{call ADMIN.CREATE_TRANSACCION(?,?,?,?,?)}";
 			CallableStatement cStmt = connection.prepareCall(query);
 	        cStmt.setInt("ID_CUENTA_ORIGEN", idCuentaOrigen);
-	        cStmt.setInt("ID_CUENTA_DESTINO", idCuentaDestino);
+	        cStmt.setString("NUMERO_CUENTA_DESTINO", CuentaDestinoStr);
 	        cStmt.setInt("ID_TIPO_TRANSACCION", idTipoTransaccion);
 	        cStmt.setDouble("MONTO", montoTransferido);
 	        

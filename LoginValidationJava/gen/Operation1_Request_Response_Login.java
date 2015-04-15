@@ -31,14 +31,14 @@ public class Operation1_Request_Response_Login extends MbJavaComputeNode {
 			
 MbElement rootElement = outMessage.getRootElement();
 			
-			MbElement cedula = rootElement.getFirstElementByPath("/XMLNSC/operation1/cedulaCliente");
+			MbElement id = rootElement.getFirstElementByPath("/XMLNSC/operation1/idUsuario");
 			MbElement clave = rootElement.getFirstElementByPath("/XMLNSC/operation1/password");
-			String cedulaCliente = cedula.getValueAsString();
+			String idUsuario = id.getValueAsString();
 			String claveCliente = clave.getValueAsString();
 			Boolean DatabaseError;
 			int existe=0;
 			try{		     
-				String query = "call LoginValidation('"+ cedulaCliente +"','"+ claveCliente +"',?)";
+				String query = "call LoginValidation('"+ idUsuario +"','"+ claveCliente +"',?)";
 				//Coneccion con base de datos
 				Class. forName ( "COM.ibm.db2os390.sqlj.jdbc.DB2SQLJDriver" ); 
 		        Connection  connection = 
