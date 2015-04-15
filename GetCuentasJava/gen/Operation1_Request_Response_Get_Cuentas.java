@@ -55,7 +55,7 @@ public class Operation1_Request_Response_Get_Cuentas extends MbJavaComputeNode {
 				String saldoMenorAStr = saldoMenorAMb.getValueAsString();
 				
 				//***************************Convertir los datos a sus tipos respectivos**************************
-				int idCliente = !idClienteStr.equals("-1") ? Integer.parseInt(idClienteStr): -1;
+				String idCliente = !idClienteStr.equals("-1") ? idClienteStr: "-1";
 				int idTipoCuenta = !idTipoCuentaStr.equals("-1") ? Integer.parseInt(idTipoCuentaStr): -1;
 				Date fechaMayorA = fechaMayorAStr.equals("null") ?  null : Date.valueOf(fechaMayorAStr);
 				Date fechaMenorA = fechaMenorAStr.equals("null") ?  null : Date.valueOf(fechaMenorAStr);
@@ -73,7 +73,7 @@ public class Operation1_Request_Response_Get_Cuentas extends MbJavaComputeNode {
 				//*****************************Preparar query a la base de datos********************************
 				String query = "{call ADMIN.GET_CUENTAS_BY_ID_CLIENTE_OPTIONALS(?,?,?,?,?,?)}";
 				CallableStatement cStmt = connection.prepareCall(query);
-		        cStmt.setInt("ID_CLIENTE", idCliente);
+		        cStmt.setString("ID_CLIENTE", idCliente);
 		        cStmt.setInt("ID_TIPO_CUENTA", idTipoCuenta);
 		        cStmt.setDate("FECHA_MAYOR_A",  fechaMayorA);
 		        cStmt.setDate("FECHA_MENOR_A", fechaMenorA);

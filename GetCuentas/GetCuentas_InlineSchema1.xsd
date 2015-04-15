@@ -3,7 +3,7 @@
     <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="operation1">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="id_cliente" nillable="true" type="xsd:integer"/>
+            <xsd:element name="id_cliente" nillable="true" type="xsd:string"/>
                 <xsd:element name="id_tipo_cuenta" nillable="true" type="xsd:integer"/>
                 <xsd:element name="fecha_mayor_a" nillable="true" type="xsd:string"/>
                 <xsd:element name="fecha_menor_a" nillable="true" type="xsd:string"/>
