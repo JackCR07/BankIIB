@@ -1,6 +1,6 @@
 
 
-Importing file: C:\Users\lprado\Documents\GBM\IIB\workspace\CreateTransaccion\CreateTransaccion.wsdl
+Importing file: C:\Users\jcervantes\git\BankIIB\CreateTransaccion\CreateTransaccion.wsdl
 
 Copying source WSDL CreateTransaccion.wsdl to CreateTransaccion.wsdl.
 The WSDL import will proceed with bindings CreateTransaccionHttpBinding.
