@@ -119,7 +119,7 @@ public class Operation1_Request_Response_JavaCompute_Get_Transacciones extends
 					DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"transaccion", "");
 					DataElement =  rootElement.getFirstElementByPath("/XMLNSC/operation1Response/transaccion");
 					DataElement.createElementAsFirstChild(MbElement.TYPE_NAME, "id_transaccion", resIdTransaccion);
-					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "numero_transacion",resNumeroTransaccion);
+					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "numero_transaccion",resNumeroTransaccion);
 					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "monto", resMonto+"");
 					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "fecha_transaccion",resFechaTransaccion.toString());
 					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "tipo_transaccion",resTipoTransaccion);

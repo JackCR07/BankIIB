@@ -3,8 +3,14 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="id_cuenta_origen" nillable="true" type="xsd:int"/>
-                <xsd:element name="numero_cuenta_destino" nillable="true" type="xsd:string"/>
-                <xsd:element name="id_tipo_transaccion" nillable="true" type="xsd:int"/>
+            <xsd:element name="numero_cuenta_destino" nillable="true">
+            	<xsd:simpleType>
+            		<xsd:restriction base="xsd:string">
+            			<xsd:maxLength value="50"></xsd:maxLength>
+            		</xsd:restriction>
+            	</xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="id_tipo_transaccion" nillable="true" type="xsd:int"/>
                 <xsd:element name="monto_transferido" nillable="true" type="xsd:double"/>
             </xsd:sequence>
         </xsd:complexType>
