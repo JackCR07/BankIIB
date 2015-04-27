@@ -120,7 +120,16 @@ public class Operation1_Request_Response_JavaCompute_Get_Transacciones extends
 					DataElement =  rootElement.getFirstElementByPath("/XMLNSC/operation1Response/transaccion");
 					DataElement.createElementAsFirstChild(MbElement.TYPE_NAME, "id_transaccion", resIdTransaccion);
 					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "numero_transaccion",resNumeroTransaccion);
-					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "monto", resMonto+"");
+					if(resTipoTransaccion.equalsIgnoreCase("Credito"))
+					{
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "credito", resMonto+"");
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "debito", "");
+					}
+					else
+					{
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "debito", resMonto+"");
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "credito", "");
+					}
 					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "fecha_transaccion",resFechaTransaccion.toString());
 					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "tipo_transaccion",resTipoTransaccion);
 					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "id_cuenta_origen",resIdCuentaOrigen);
