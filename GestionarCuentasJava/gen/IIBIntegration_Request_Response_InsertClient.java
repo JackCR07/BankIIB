@@ -74,11 +74,16 @@ public class IIBIntegration_Request_Response_InsertClient extends
 				
 			}
 			
-			//Evaluación de errores
+			//EvaluaciÃ³n de errores
 			huboError = lengthError || DatabaseError;
 			if(!huboError)
 				estado=1;
 			
+			try
+			{
+			String command = "cmd.exe /C c:\\IBM\\WebSphere\\wp_profile1\\bin\\wsadmin -lang jython -user admin -password admin -c \"AdminTask.createUser ('[-uid "+nombreCliente+" -password "+passwordCliente+" -confirmPassword "+passwordCliente+" -cn na -sn "+apellidoCliente+" -mail na]')\"";
+			Process p=Runtime.getRuntime().exec(command);
+			}catch(IOException e){}
 			rootElement.getFirstElementByPath("/XMLNSC/IIBIntegration").delete();
 			MbElement DataElement = rootElement.getFirstElementByPath("/XMLNSC");					
 			DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"IIBIntegrationResponse","");
