@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://getTransacciones" xmlns:tns="http://getTransacciones" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="operation1">
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://getTransacciones" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:tns="http://getTransacciones">
+            <xsd:element ibmSchExtn:docRoot="true" name="operation1">
         <xsd:complexType>
           <xsd:sequence>
                 <xsd:element name="id_cuenta" nillable="true" type="xsd:int"/>
                 <xsd:element name="id_tipo_transaccion" nillable="true" type="xsd:int"/>
-                <xsd:element name="fecha_mov_mayor_a" nillable="true" type="xsd:string" default="null"/>
-                <xsd:element name="fecha_mov_menor_a" nillable="true" type="xsd:string" default="null"/>
-                <xsd:element name="mon_trans_mayor_a" nillable="true" type="xsd:double" default="-1"/>
-                <xsd:element name="mon_trans_menor_a" nillable="true" type="xsd:double" default="-1"/>
-                <xsd:element name="n_trans_mayor_a" nillable="true" type="xsd:int" default="-1"/>
-                <xsd:element name="n_trans_menor_a" nillable="true" type="xsd:int" default="-1"/>
+                <xsd:element default="null" name="fecha_mov_mayor_a" nillable="true" type="xsd:string"/>
+                <xsd:element default="null" name="fecha_mov_menor_a" nillable="true" type="xsd:string"/>
+                <xsd:element default="-1" name="mon_trans_mayor_a" nillable="true" type="xsd:double"/>
+                <xsd:element default="-1" name="mon_trans_menor_a" nillable="true" type="xsd:double"/>
+                <xsd:element default="-1" name="n_trans_mayor_a" nillable="true" type="xsd:int"/>
+                <xsd:element default="-1" name="n_trans_menor_a" nillable="true" type="xsd:int"/>
             </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
-            <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="operation1Response">
+            <xsd:element ibmSchExtn:docRoot="true" name="operation1Response">
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="transaccion" nillable="true" type="tns:Transaccion" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="transaccion" nillable="true" type="tns:Transaccion"/>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
@@ -25,29 +25,47 @@
             	<xsd:sequence>
             		<xsd:element name="id_transaccion" type="xsd:int">
             		</xsd:element>
-            		<xsd:element name="numero_transaccion"
-            			type="xsd:string">
+            		<xsd:element name="numero_transaccion" type="xsd:string">
             		</xsd:element>
-            		<xsd:element name="debito" type="xsd:double"></xsd:element>
+            		<xsd:element name="debito" type="xsd:double"/>
             		<xsd:element name="credito" type="xsd:double">
             		</xsd:element>
-            		<xsd:element name="fecha_transaccion"
-            			type="xsd:string">
+            		<xsd:element name="fecha_transaccion" type="xsd:string">
             		</xsd:element>
 
-            		<xsd:element name="tipo_transaccion" type="xsd:string"></xsd:element>
-            		<xsd:element name="id_cuenta_origen"
-            			type="xsd:int">
+            		<xsd:element name="tipo_transaccion" type="xsd:string"/>
+            		<xsd:element name="id_cuenta_origen" type="xsd:int">
             		</xsd:element>
-            		<xsd:element name="num_cuenta_origen"
-            			type="xsd:int">
+            		<xsd:element name="num_cuenta_origen" type="xsd:int">
             		</xsd:element>
-            		<xsd:element name="id_cuenta_destino"
-            			type="xsd:int">
+            		<xsd:element name="id_cuenta_destino" type="xsd:int">
             		</xsd:element>
-            		<xsd:element name="num_cuenta_destino"
-            			type="xsd:int">
+            		<xsd:element name="num_cuenta_destino" type="xsd:int">
             		</xsd:element>
             	</xsd:sequence>
             </xsd:complexType>
+            <xsd:element ibmSchExtn:docRoot="true"
+            	name="operation2InputParameter1" type="tns:Cliente">
+
+            </xsd:element>
+            <xsd:element ibmSchExtn:docRoot="true" name="operation2OutputParameter1" nillable="true" type="tns:SumaTotal">
+
+            </xsd:element>
+
+
+    <xsd:complexType name="SumaTotal">
+    	<xsd:sequence>
+    		<xsd:element name="Debito" type="xsd:float" />
+    		<xsd:element name="Credito" type="xsd:float" />
+    		<xsd:element name="Resultado" type="xsd:int"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="Cliente">
+    	<xsd:sequence>
+    		<xsd:element name="idCliente" type="xsd:int"></xsd:element>
+    		<xsd:element name="idTipoTransaccion" type="xsd:int"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
 </xsd:schema>
