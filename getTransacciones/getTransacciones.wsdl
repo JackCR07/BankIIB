@@ -1,12 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="getTransacciones" targetNamespace="http://getTransacciones" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://getTransacciones" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions name="getTransacciones" targetNamespace="http://getTransacciones" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://getTransacciones" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <wsdl:documentation>
     <wsdl:appinfo source="WMQI_APPINFO">
       <MRWSDLAppInfo imported="true">
-        <binding hasEncoding="false" imported="true" name="getTransaccionesHttpBinding" originalBindingStyle="document"/>
         <generatedXSD location="getTransacciones_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="getTransaccionesHttpBinding" originalBindingStyle="document"/>
       </MRWSDLAppInfo>
     </wsdl:appinfo>
   </wsdl:documentation>
+  
   
   
   
@@ -18,13 +19,17 @@
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="operation1RequestMsg">
-    <wsdl:part element="tns:operation1" name="operation1Parameters"/>
+    <wsdl:part element="tns:operation1" name="operation1Parameters">
+      <wsdl:documentation/>
+    </wsdl:part>
   </wsdl:message>
   <wsdl:message name="operation1ResponseMsg">
     <wsdl:part element="tns:operation1Response" name="operation1Result"/>
   </wsdl:message>
     <wsdl:message name="operation2RequestMsg">
-    <wsdl:part element="tns:operation2InputParameter1" name="operation2InputParameter1"/>
+    <wsdl:part element="tns:operation2InputParameter1" name="operation2InputParameter1">
+      <wsdl:documentation/>
+    </wsdl:part>
   </wsdl:message>
     <wsdl:message name="operation2ResponseMsg">
     <wsdl:part element="tns:operation2OutputParameter1" name="operation2OutputParameter1"/>

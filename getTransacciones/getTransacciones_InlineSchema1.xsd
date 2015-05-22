@@ -64,8 +64,14 @@
 
     <xsd:complexType name="Cliente">
     	<xsd:sequence>
-    		<xsd:element name="idCliente" type="xsd:int"></xsd:element>
-    		<xsd:element name="idTipoTransaccion" type="xsd:int"></xsd:element>
+    		<xsd:element name="idCliente" type="xsd:string"></xsd:element>
+    		<xsd:element name="idTipoTransaccion" type="xsd:string" nillable="true"></xsd:element>
+    		<xsd:element name="fecha_mov_mayor_a" type="xsd:string" nillable="true"></xsd:element>
+    		<xsd:element name="fecha_mov_menor_a" type="xsd:string" nillable="true"></xsd:element>
+    		<xsd:element name="mon_trans_mayor_a" type="xsd:string" nillable="true"></xsd:element>
+    		<xsd:element name="mon_trans_menor_a" type="xsd:string" nillable="true"></xsd:element>
+    		<xsd:element name="n_trans_mayor_a" type="xsd:string" nillable="true"></xsd:element>
+    		<xsd:element name="n_trans_menor_a" type="xsd:string" nillable="true"></xsd:element>
     	</xsd:sequence>
     </xsd:complexType>
 </xsd:schema>

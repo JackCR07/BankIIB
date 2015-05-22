@@ -37,18 +37,37 @@ public class Operation2_Request_Response_CálculoJava extends MbJavaComputeNode {
 			MbElement rootElement = outMessage.getRootElement();
 			MbElement idCuentaMb = rootElement.getFirstElementByPath("/XMLNSC/operation2InputParameter1/idCliente");;
 			MbElement idTipoTransaccionMb = rootElement.getFirstElementByPath("/XMLNSC/operation2InputParameter1/idTipoTransaccion");
+			MbElement fechaMovMayorAMb = rootElement.getFirstElementByPath("/XMLNSC/operation2InputParameter1/fecha_mov_mayor_a");
+			MbElement fechaMovMenorAMb = rootElement.getFirstElementByPath("/XMLNSC/operation2InputParameter1/fecha_mov_menor_a");
+			MbElement monTransMayorAMb = rootElement.getFirstElementByPath("/XMLNSC/operation2InputParameter1/mon_trans_mayor_a");
+			MbElement monTransMenorAMb = rootElement.getFirstElementByPath("/XMLNSC/operation2InputParameter1/mon_trans_menor_a");
+			MbElement nTransMayorAMb = rootElement.getFirstElementByPath("/XMLNSC/operation2InputParameter1/n_trans_mayor_a");
+			MbElement nTransMenorAMb = rootElement.getFirstElementByPath("/XMLNSC/operation2InputParameter1/n_trans_menor_a");
 			
 			//****************************Convertir los datos obtenidos a string*************************************
 			String idCuentaStr = idCuentaMb.getValueAsString();
 			String idTipoTransaccionStr = idTipoTransaccionMb.getValueAsString();
-			
+			String fechaMovMayorAStr = fechaMovMayorAMb.getValueAsString();
+			String fechaMovMenorAStr = fechaMovMenorAMb.getValueAsString();
+			String monTransMayorAStr = monTransMayorAMb.getValueAsString();
+			String monTransMenorAStr = monTransMenorAMb.getValueAsString();
+			String nTransMayorAStr = nTransMayorAMb.getValueAsString();
+			String nTransMenorAStr = nTransMenorAMb.getValueAsString();
 			
 			//***************************Convertir los datos a sus tipos respectivos**************************
 			int idCuenta = Integer.parseInt(idCuentaStr);
-			int idTipoTransaccion = Integer.parseInt(idTipoTransaccionStr);
+			int idTipoTransaccion = (idTipoTransaccionStr.equals("null")|| idTipoTransaccionStr.equals("")) ? -1 : Integer.parseInt(idTipoTransaccionStr);
+			Date fechaMovMayorA = (fechaMovMayorAStr.equals("null") || fechaMovMayorAStr.equals("")) ?  null : Date.valueOf(fechaMovMayorAStr);
+			Date fechaMovMenorA = (fechaMovMenorAStr.equals("null") || fechaMovMenorAStr.equals("")) ?  null : Date.valueOf(fechaMovMenorAStr);
+			double monTransMayorA = (monTransMayorAStr.equals("null") || monTransMayorAStr.equals("")) ? -1 : Double.parseDouble(monTransMayorAStr);
+			double monTransMenorA = (monTransMenorAStr.equals("null") || monTransMenorAStr.equals("")) ? -1 : Double.parseDouble(monTransMenorAStr);
+			int nTransMayorA = (nTransMayorAStr.equals("null") || nTransMayorAStr.equals("")) ? -1 : Integer.parseInt(nTransMayorAStr);
+			int nTransMenorA = (nTransMenorAStr.equals("null") || nTransMenorAStr.equals(""))? -1 : Integer.parseInt(nTransMenorAStr);
 			
-			
-			
+			PrintWriter writer2;
+			writer2 = new PrintWriter("C:/logGetTransacciones1.txt", "UTF-8");
+			writer2.println("entre");
+			writer2.close();
 		
 			//****************************Borrar los datos del mensaje de entrada****************************
 			rootElement.getFirstElementByPath("/XMLNSC/operation2InputParameter1").delete();
@@ -60,10 +79,16 @@ public class Operation2_Request_Response_CálculoJava extends MbJavaComputeNode {
 					DriverManager.getConnection("jdbc:db2://172.16.11.225:50000/IIBDB", "admin","Thisli07");
 			
 			//*****************************Preparar query a la base de datos********************************
-			String query = "{call ADMIN.SumaTransacciones(?,?)}";
+			String query = "{call ADMIN.SumaTransacciones(?,?,?,?,?,?,?,?)}";
 			CallableStatement cStmt = connection.prepareCall(query);
 	        cStmt.setInt("ID_CUENTA", idCuenta);
 	        cStmt.setInt("ID_TIPO_TRANSACCION", idTipoTransaccion);
+	        cStmt.setDate("FECHA_MOV_MAYOR_A",  fechaMovMayorA);
+	        cStmt.setDate("FECHA_MOV_MENOR_A", fechaMovMenorA);
+	        cStmt.setDouble("MON_TRANS_MAYOR_A", monTransMayorA);
+	        cStmt.setDouble("MON_TRANS_MENOR_A", monTransMenorA);
+	        cStmt.setInt("N_TRANS_MAYOR_A", nTransMayorA);
+	        cStmt.setInt("N_TRANS_MENOR_A", nTransMenorA);
 	        
 	        //*****************************Ejecutar query a la base de datos********************************
 			cStmt.execute();
