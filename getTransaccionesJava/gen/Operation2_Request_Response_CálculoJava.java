@@ -105,7 +105,12 @@ public class Operation2_Request_Response_CálculoJava extends MbJavaComputeNode {
 				rs.next();
 				DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"Debito", rs.getInt("debito"));
 				DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"Credito", rs.getInt("credito"));
+				DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"NumeroCredito", rs.getInt("num_credito"));
+				DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"NumeroDebito", rs.getInt("num_debito"));
+				DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"IDTipoTransaccion", rs.getInt("id_tipo_transaccion"));
+				DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"NumeroCuenta", rs.getString("numero_cuenta"));
 				DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"Resultado", 0);
+				
 				
 			}
 
@@ -122,8 +127,12 @@ public class Operation2_Request_Response_CálculoJava extends MbJavaComputeNode {
 			MbElement DataElement = rootElement.getFirstElementByPath("/XMLNSC");
 			DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"operation2OutputParameter1", "");
 			DataElement = rootElement.getFirstElementByPath("/XMLNSC/operation2OutputParameter1");
-			DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"Debito", 0);
-			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"Credito", 0);
+			DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"Debito", -1);
+			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"Credito", -1);
+			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"NumeroCredito",-1);
+			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"NumeroDebito",-1);
+			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"IDTipoTransaccion", -1);
+			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"NumeroCuenta", -1);
 			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"Resultado", -1);
 			
 			//Creacion de log

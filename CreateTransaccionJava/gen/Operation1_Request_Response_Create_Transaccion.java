@@ -49,8 +49,10 @@ public class Operation1_Request_Response_Create_Transaccion extends MbJavaComput
 			PrintWriter writer3 = new PrintWriter("C:/logObtuveRootElement.txt", "UTF-8");
 			writer3.write("entre");
 			writer3.close();
-			MbElement idCuentaOrigenMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/id_cuenta_origen");;
+			MbElement idCuentaOrigenMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/id_cuenta_origen");
 			MbElement numCuentaDestinoMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/numero_cuenta_destino");
+			//El valor id_tipo de transaccion no se esta utilizando, ya que la base de datos crea siempre dos transacciones
+			//una tipo credito y otra debito
 			MbElement idTipoTransaccionMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/id_tipo_transaccion");
 			MbElement montoTransferidoMb = rootElement.getFirstElementByPath("/XMLNSC/operation1/monto_transferido");
 			

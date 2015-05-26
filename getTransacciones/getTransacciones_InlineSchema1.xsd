@@ -56,7 +56,11 @@
     <xsd:complexType name="SumaTotal">
     	<xsd:sequence>
     		<xsd:element name="Debito" type="xsd:float" />
-    		<xsd:element name="Credito" type="xsd:float" />
+    		<xsd:element name="Credito" type="xsd:float" />
+    		<xsd:element name="NumeroDebito" type="xsd:int"></xsd:element>
+    		<xsd:element name="NumeroCredito" type="xsd:int"></xsd:element>
+    		<xsd:element name="NumeroCuenta" type="xsd:string"></xsd:element>
+    		<xsd:element name="IDTipoTransaccion" type="xsd:int"></xsd:element>
     		<xsd:element name="Resultado" type="xsd:int"></xsd:element>
     	</xsd:sequence>
     </xsd:complexType>
