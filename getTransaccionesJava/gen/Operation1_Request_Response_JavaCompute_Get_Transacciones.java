@@ -115,28 +115,56 @@ public class Operation1_Request_Response_JavaCompute_Get_Transacciones extends
 					int resnumCuentaOrigen = rs.getInt("NUM_CUENTA_ORIGEN");
 					int resIdCuentaDestino = rs.getInt("ID_CUENTA_DESTINO");
 					int resnumCuentaDestino = rs.getInt("NUM_CUENTA_DESTINO");
-					DataElement = rootElement.getFirstElementByPath("/XMLNSC/operation1Response");
-					DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"transaccion", "");
-					DataElement =  rootElement.getFirstElementByPath("/XMLNSC/operation1Response/transaccion");
-					DataElement.createElementAsFirstChild(MbElement.TYPE_NAME, "id_transaccion", resIdTransaccion);
-					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "numero_transaccion",resNumeroTransaccion);
-					if(resTipoTransaccion.equalsIgnoreCase("Credito"))
-					{
-						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "credito", resMonto+"");
-						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "debito", "");
+					String resMoneda = rs.getString("MONEDA");
+					//Evaluar transaccion para saber si es solicitada y para averiguar el tipo
+					boolean creditosSolicitados=false;
+					boolean debitosSolicitados=false;
+					boolean esCredito=false;
+					boolean esDebito=false;
+					boolean transaccionSolicitada=false;
+					if(idTipoTransaccion ==1)
+						creditosSolicitados=true;
+					else if(idTipoTransaccion==2)
+						debitosSolicitados=true;
+					else if(idTipoTransaccion==-1){
+						creditosSolicitados=true;
+						debitosSolicitados=true;
 					}
-					else
-					{
-						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "debito", resMonto+"");
-						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "credito", "");
+					if(idCuenta==resIdCuentaOrigen){
+						esCredito=true;
+						resTipoTransaccion="Credito";
 					}
-					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "fecha_transaccion",resFechaTransaccion.toString());
-					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "tipo_transaccion",resTipoTransaccion);
-					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "id_cuenta_origen",resIdCuentaOrigen);
-					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "num_cuenta_origen",resnumCuentaOrigen);
-					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "id_cuenta_destino",resIdCuentaDestino);
-					DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "num_cuenta_destino",resnumCuentaDestino);
-					 
+					else if(idCuenta==resIdCuentaDestino){
+						esDebito=true;
+						resTipoTransaccion="Debito";
+					}
+					if((esCredito && creditosSolicitados) || (esDebito && debitosSolicitados))
+						transaccionSolicitada=true;
+					if(transaccionSolicitada){
+						DataElement = rootElement.getFirstElementByPath("/XMLNSC/operation1Response");
+						DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"transaccion", "");
+						DataElement =  rootElement.getFirstElementByPath("/XMLNSC/operation1Response/transaccion");
+						DataElement.createElementAsFirstChild(MbElement.TYPE_NAME, "id_transaccion", resIdTransaccion);
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "numero_transaccion",resNumeroTransaccion);
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "moneda",resMoneda);
+						
+						if(esCredito && creditosSolicitados)//Credito
+						{
+							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "credito", resMonto+"");
+							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "debito", "");
+						}
+						else if(esDebito && debitosSolicitados)//Debito
+						{
+							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "credito", "");
+							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "debito", resMonto+"");
+						}
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "fecha_transaccion",resFechaTransaccion.toString());
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "tipo_transaccion",resTipoTransaccion);
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "id_cuenta_origen",resIdCuentaOrigen);
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "num_cuenta_origen",resnumCuentaOrigen);
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "id_cuenta_destino",resIdCuentaDestino);
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "num_cuenta_destino",resnumCuentaDestino);
+					}
 					i++;
 				}
 			}

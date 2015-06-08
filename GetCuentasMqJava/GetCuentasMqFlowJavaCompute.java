@@ -40,6 +40,7 @@ public class GetCuentasMqFlowJavaCompute extends MbJavaComputeNode {
 				//*****************************Obtener datos del mensaje******************************************
 				MbElement idClienteMb = rootElement.getFirstElementByPath("/XMLNSC/datos/id_cliente");
 				MbElement idTipoCuentaMb = rootElement.getFirstElementByPath("/XMLNSC/datos/id_tipo_cuenta");
+				MbElement monedaMb = rootElement.getFirstElementByPath("/XMLNSC/datos/moneda");
 				MbElement fechaMayorAMb = rootElement.getFirstElementByPath("/XMLNSC/datos/fecha_mayor_a");
 				MbElement fechaMenorAMb = rootElement.getFirstElementByPath("/XMLNSC/datos/fecha_menor_a");
 				MbElement saldoMayorAMb = rootElement.getFirstElementByPath("/XMLNSC/datos/saldo_mayor_a");
@@ -49,6 +50,7 @@ public class GetCuentasMqFlowJavaCompute extends MbJavaComputeNode {
 				//****************************Convertir los datos obtenidos a string******************************
 				String idClienteStr = idClienteMb.getValueAsString();
 				String idTipoCuentaStr = idTipoCuentaMb.getValueAsString();
+				String monedaStr = monedaMb.getValueAsString();
 				String fechaMayorAStr = fechaMayorAMb.getValueAsString();
 				String fechaMenorAStr = fechaMenorAMb.getValueAsString();
 				String saldoMayorAStr = saldoMayorAMb.getValueAsString();
@@ -57,6 +59,7 @@ public class GetCuentasMqFlowJavaCompute extends MbJavaComputeNode {
 				//***************************Convertir los datos a sus tipos respectivos**************************
 				String idCliente = !idClienteStr.equals("-1") ? idClienteStr: "-1";
 				int idTipoCuenta = !idTipoCuentaStr.equals("-1") ? Integer.parseInt(idTipoCuentaStr): -1;
+				String moneda = monedaStr.equals("null") ?  null : monedaStr;
 				Date fechaMayorA = fechaMayorAStr.equals("null") ?  null : Date.valueOf(fechaMayorAStr);
 				Date fechaMenorA = fechaMenorAStr.equals("null") ?  null : Date.valueOf(fechaMenorAStr);
 				double saldoMayorA = !saldoMayorAStr.equals("-1") ? Double.parseDouble(saldoMayorAStr): -1;
@@ -74,9 +77,10 @@ public class GetCuentasMqFlowJavaCompute extends MbJavaComputeNode {
 				writer1.write("conecte con base");
 				writer1.close();
 				//*****************************Preparar query a la base de datos********************************
-				String query = "{call ADMIN.GET_CUENTAS_BY_ID_CLIENTE_OPTIONALS(?,?,?,?,?,?)}";
+				String query = "{call ADMIN.GET_CUENTAS_BY_ID_CLIENTE_OPTIONALS(?,?,?,?,?,?,?)}";
 				CallableStatement cStmt = connection.prepareCall(query);
 		        cStmt.setString("ID_CLIENTE", idCliente);
+		        cStmt.setString("MONEDA", moneda);
 		        cStmt.setInt("ID_TIPO_CUENTA", idTipoCuenta);
 		        cStmt.setDate("FECHA_MAYOR_A",  fechaMayorA);
 		        cStmt.setDate("FECHA_MENOR_A", fechaMenorA);
@@ -102,11 +106,13 @@ public class GetCuentasMqFlowJavaCompute extends MbJavaComputeNode {
 						double resSaldo = rs.getDouble("SALDO");
 						Date resFechaCreacion = rs.getDate("FECHA_CREACION");
 						String resTipoCuenta = rs.getString("TIPO_CUENTA");
+						String resMoneda = rs.getString("MONEDA");
 						DataElement = rootElement.getFirstElementByPath("/XMLNSC/operation1Response");
 						DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"cuenta", "");
 						DataElement =  rootElement.getFirstElementByPath("/XMLNSC/operation1Response/cuenta");
 						DataElement.createElementAsFirstChild(MbElement.TYPE_NAME, "id_cuenta", resIdCuenta);
 						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "numero_cuenta",resNumeroCuenta);
+						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "moneda",resMoneda);
 						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "saldo", resSaldo+"");
 						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "fecha_creacion",resFechaCreacion.toString());
 						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "tipo_cuenta",resTipoCuenta);

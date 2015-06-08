@@ -25,22 +25,30 @@
             	<xsd:sequence>
             		<xsd:element name="id_transaccion" type="xsd:int">
             		</xsd:element>
-            		<xsd:element name="numero_transaccion" type="xsd:string">
+            		<xsd:element name="numero_transaccion"
+            			type="xsd:string">
             		</xsd:element>
-            		<xsd:element name="debito" type="xsd:double"/>
+            		<xsd:element name="moneda" type="xsd:string"></xsd:element>
+            		<xsd:element name="debito" type="xsd:double" />
             		<xsd:element name="credito" type="xsd:double">
             		</xsd:element>
-            		<xsd:element name="fecha_transaccion" type="xsd:string">
+            		<xsd:element name="fecha_transaccion"
+            			type="xsd:string">
             		</xsd:element>
 
-            		<xsd:element name="tipo_transaccion" type="xsd:string"/>
-            		<xsd:element name="id_cuenta_origen" type="xsd:int">
+            		<xsd:element name="tipo_transaccion"
+            			type="xsd:string" />
+            		<xsd:element name="id_cuenta_origen"
+            			type="xsd:int">
             		</xsd:element>
-            		<xsd:element name="num_cuenta_origen" type="xsd:int">
+            		<xsd:element name="num_cuenta_origen"
+            			type="xsd:int">
             		</xsd:element>
-            		<xsd:element name="id_cuenta_destino" type="xsd:int">
+            		<xsd:element name="id_cuenta_destino"
+            			type="xsd:int">
             		</xsd:element>
-            		<xsd:element name="num_cuenta_destino" type="xsd:int">
+            		<xsd:element name="num_cuenta_destino"
+            			type="xsd:int">
             		</xsd:element>
             	</xsd:sequence>
             </xsd:complexType>
