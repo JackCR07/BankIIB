@@ -77,7 +77,7 @@ public class GetCuentasMqFlowJavaCompute extends MbJavaComputeNode {
 				writer1.write("conecte con base");
 				writer1.close();
 				//*****************************Preparar query a la base de datos********************************
-				String query = "{call ADMIN.GET_CUENTAS_BY_ID_CLIENTE_OPTIONALS(?,?,?,?,?,?,?)}";
+				String query = "{call ADMIN.GET_CUENTAS_BY_ID_CLIENTE_OPTIONALS_6ARGS(?,?,?,?,?,?,?)}";
 				CallableStatement cStmt = connection.prepareCall(query);
 		        cStmt.setString("ID_CLIENTE", idCliente);
 		        cStmt.setString("MONEDA", moneda);

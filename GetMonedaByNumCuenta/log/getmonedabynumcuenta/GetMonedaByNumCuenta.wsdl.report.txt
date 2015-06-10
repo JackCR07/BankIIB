@@ -1,0 +1,14 @@
+
+
+Importing file: C:\Users\lprado\git\BankIIB\GetMonedaByNumCuenta\GetMonedaByNumCuenta.wsdl
+
+Copying source WSDL GetMonedaByNumCuenta.wsdl to GetMonedaByNumCuenta.wsdl.
+The WSDL import will proceed with bindings GetMonedaByNumCuentaHttpBinding.
+Creating wsdl schema document for file:///C:/Users/lprado/git/BankIIB/GetMonedaByNumCuenta/GetMonedaByNumCuenta.wsdl.
+Parsing wsdl binding {http://GetMonedaByNumCuenta}GetMonedaByNumCuentaHttpBinding.
+Parsing wsdl binding input operation1.
+Parsing wsdl binding output operation1.
+Processing doc style for operation operation1.
+Populating WSDL schema GetMonedaByNumCuenta.xsd.
+Creating file GetMonedaByNumCuenta.xsd in the workspace.
+Creating file GetMonedaByNumCuenta_InlineSchema1.xsd in the workspace.

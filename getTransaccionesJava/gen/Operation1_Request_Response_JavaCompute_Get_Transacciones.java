@@ -115,7 +115,8 @@ public class Operation1_Request_Response_JavaCompute_Get_Transacciones extends
 					int resnumCuentaOrigen = rs.getInt("NUM_CUENTA_ORIGEN");
 					int resIdCuentaDestino = rs.getInt("ID_CUENTA_DESTINO");
 					int resnumCuentaDestino = rs.getInt("NUM_CUENTA_DESTINO");
-					String resMoneda = rs.getString("MONEDA");
+					String resMonedaOrigen = rs.getString("MONEDA_ORIGEN");
+					String resMonedaDestino = rs.getString("MONEDA_DESTINO");
 					//Evaluar transaccion para saber si es solicitada y para averiguar el tipo
 					boolean creditosSolicitados=false;
 					boolean debitosSolicitados=false;
@@ -146,15 +147,16 @@ public class Operation1_Request_Response_JavaCompute_Get_Transacciones extends
 						DataElement =  rootElement.getFirstElementByPath("/XMLNSC/operation1Response/transaccion");
 						DataElement.createElementAsFirstChild(MbElement.TYPE_NAME, "id_transaccion", resIdTransaccion);
 						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "numero_transaccion",resNumeroTransaccion);
-						DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "moneda",resMoneda);
 						
 						if(esCredito && creditosSolicitados)//Credito
 						{
+							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "moneda",resMonedaOrigen);
 							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "credito", resMonto+"");
 							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "debito", "");
 						}
 						else if(esDebito && debitosSolicitados)//Debito
 						{
+							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "moneda",resMonedaOrigen);
 							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "credito", "");
 							DataElement.createElementAsLastChild(MbElement.TYPE_NAME, "debito", resMonto+"");
 						}
