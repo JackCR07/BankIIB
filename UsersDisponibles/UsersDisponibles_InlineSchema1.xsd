@@ -3,7 +3,8 @@
         <xsd:complexType>
           <xsd:sequence>
             <xsd:element name="cedulaCliente" nillable="true" type="xsd:string"/>
-          </xsd:sequence>
+                <xsd:element name="usuario" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
         </xsd:complexType>
       </xsd:element>
             <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" name="operation1Response">

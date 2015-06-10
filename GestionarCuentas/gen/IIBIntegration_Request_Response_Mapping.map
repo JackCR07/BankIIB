@@ -10,24 +10,8 @@
             <output path="Properties"/>
         </move>
         <move automap="true">
-            <input path="IIBIntegration/Cliente/nombre"/>
-            <output path="IIBIntegrationResponse/Resultado/Cliente/nombre"/>
-        </move>
-        <move automap="true">
-            <input path="IIBIntegration/Cliente/apellido"/>
-            <output path="IIBIntegrationResponse/Resultado/Cliente/apellido"/>
-        </move>
-        <move automap="true">
             <input path="IIBIntegration/Cliente/cedula"/>
             <output path="IIBIntegrationResponse/Resultado/Cliente/cedula"/>
-        </move>
-        <move automap="true">
-            <input path="IIBIntegration/Cliente/direccion"/>
-            <output path="IIBIntegrationResponse/Resultado/Cliente/direccion"/>
-        </move>
-        <move automap="true">
-            <input path="IIBIntegration/Cliente/fechaNacimiento"/>
-            <output path="IIBIntegrationResponse/Resultado/Cliente/fechaNacimiento"/>
         </move>
         <assign value="0">
             <output path="IIBIntegrationResponse/Resultado/estado"/>

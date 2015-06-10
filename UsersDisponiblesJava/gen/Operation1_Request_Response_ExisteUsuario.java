@@ -33,12 +33,14 @@ public class Operation1_Request_Response_ExisteUsuario extends
 			
 			MbElement rootElement = outMessage.getRootElement();
 			
-			MbElement nombre = rootElement.getFirstElementByPath("/XMLNSC/operation1/cedulaCliente");
+			MbElement nombre = rootElement.getFirstElementByPath("/XMLNSC/operation1/usuario");
 			String nombreCliente = nombre.getValueAsString();
+			MbElement cedula = rootElement.getFirstElementByPath("/XMLNSC/operation1/cedulaCliente");
+			String cedulaCliente = cedula.getValueAsString();
 			Boolean DatabaseError;
 			int cantidad=0;
 			try{		     
-				String query = "call existClient('"+ nombreCliente +"',?)";
+				String query = "call existClient('"+ cedulaCliente +"','"+ nombreCliente +"',?)";
 				//Coneccion con base de datos
 				Class. forName ( "COM.ibm.db2os390.sqlj.jdbc.DB2SQLJDriver" ); 
 		        Connection  connection = 

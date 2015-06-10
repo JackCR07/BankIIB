@@ -2,8 +2,10 @@ package gen;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 
 import com.ibm.broker.javacompute.MbJavaComputeNode;
 import com.ibm.broker.plugin.MbElement;
@@ -24,6 +26,9 @@ public class IIBIntegration_Request_Response_InsertClient extends
 		MbMessage inMessage = inAssembly.getMessage();
 		MbMessageAssembly outAssembly = null;
 		
+		String nombreCliente="";
+		String usuarioCliente="";
+		
 		try { 
 			// create new message as a copy of the input
 			MbMessage outMessage = new MbMessage(inMessage);
@@ -37,34 +42,36 @@ public class IIBIntegration_Request_Response_InsertClient extends
 			boolean huboError=false;
 			int estado= 0; // Indica si el resultado fue satisfactorio
 			//Obtener datos para el query a la base de datos
-			MbElement cedula = rootElement.getFirstElementByPath("/XMLNSC/IIBIntegration/Cliente/cedula");
-			MbElement nombre = rootElement.getFirstElementByPath("/XMLNSC/IIBIntegration/Cliente/nombre");
-			MbElement apellido = rootElement.getFirstElementByPath("/XMLNSC/IIBIntegration/Cliente/apellido");
-			MbElement direccion = rootElement.getFirstElementByPath("/XMLNSC/IIBIntegration/Cliente/direccion");
-			MbElement fechaNacimiento = rootElement.getFirstElementByPath("/XMLNSC/IIBIntegration/Cliente/fechaNacimiento");
 			MbElement password = rootElement.getFirstElementByPath("/XMLNSC/IIBIntegration/Cliente/password");
+			MbElement cedula = rootElement.getFirstElementByPath("/XMLNSC/IIBIntegration/Cliente/cedula");
 			
-			String cedulaCliente = cedula.getValueAsString();
-			String nombreCliente = nombre.getValueAsString();
-			String apellidoCliente = apellido.getValueAsString();
-			String direccionCliente = direccion.getValueAsString();
-			String fechaNacimientoCliente = fechaNacimiento.getValueAsString();
 			String passwordCliente = password.getValueAsString();
+			String cedulaCliente = cedula.getValueAsString();
 			
-			if(nombreCliente.length() >20 || direccionCliente.length()> 20){
-				lengthError=true;
-			}
 			
 			if(!lengthError){
 				try{
-					String query = "insert into \"Cliente\" (\"cedula\",\"nombre\", \"apellido\",\"fechaNacimiento\", \"direccion\", \"password\") " +
-							"values('" + cedulaCliente + "','" + nombreCliente + "','" + apellidoCliente + "','" + fechaNacimientoCliente +"','" + direccionCliente + "',encrypt('"+password+"','12345678','12345678' ))";
+					String query ="update \"Cliente\" set \"password\" = encrypt('"+password+"','12345678','12345678' )"+
+							"where \"cedula\" ="+cedulaCliente;
 					//Coneccion con base de datos
 					Class. forName ( "COM.ibm.db2os390.sqlj.jdbc.DB2SQLJDriver" ); 
 			        Connection  connection = 
 			                DriverManager.getConnection("jdbc:db2://172.16.11.225:50000/IIBDB","admin","Thisli07"); 
 			        
 			        connection.prepareStatement(query).executeUpdate();
+			        query="select C.\"pk_id_cliente\", \"nombre\" from \"Cliente\" C WHERE C.\"cedula\"="+cedulaCliente;
+			        CallableStatement cStmt = connection.prepareCall(query);
+			        cStmt.execute();
+			        ResultSet rs = cStmt.getResultSet();
+			        if(rs.next()){
+				        nombreCliente = rs.getString("nombre");
+				        usuarioCliente = rs.getString("pk_id_cliente");
+			        	
+			        }
+			        /*query = "insert into \"Cuenta\" (\"saldo\", \"fecha_creacion\",\"pk_id_tipo_cuenta\", \"pk_id_cliente\") " +
+							"values('" + 240000.0 + "','" + "2015-05-28" + "','" + 1 + "','" + cedulaCliente+"))";
+			        connection.prepareStatement(query).executeUpdate();*/
+					
 				}
 				catch(Exception s){
 					DatabaseError=true;
@@ -82,7 +89,7 @@ public class IIBIntegration_Request_Response_InsertClient extends
 			
 			try
 			{
-			String command = "cmd.exe /C c:\\IBM\\WebSphere\\wp_profile1\\bin\\wsadmin -lang jython -user admin -password admin -c \"AdminTask.createUser ('[-uid "+nombreCliente+" -password "+passwordCliente+" -confirmPassword "+passwordCliente+" -cn na -sn "+apellidoCliente+" -mail na]')\"";
+			String command = "cmd.exe /C c:\\IBM\\WebSphere\\wp_profile1\\bin\\wsadmin -lang jython -user admin -password admin -c \"AdminTask.createUser ('[-uid "+usuarioCliente+" -password "+passwordCliente+" -confirmPassword "+passwordCliente+" -cn "+nombreCliente+" -sn na -mail na]')\"";
 			Process p=Runtime.getRuntime().exec(command);
 			}catch(IOException e){}
 			rootElement.getFirstElementByPath("/XMLNSC/IIBIntegration").delete();
@@ -94,12 +101,10 @@ public class IIBIntegration_Request_Response_InsertClient extends
 			DataElement = rootElement.getFirstElementByPath("/XMLNSC/IIBIntegrationResponse/Resultado");
 			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"Cliente","");
 			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"estado",estado);
+			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"nombreCliente",nombreCliente);
+			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"usuarioCliente",usuarioCliente);
 			DataElement = rootElement.getFirstElementByPath("/XMLNSC/IIBIntegrationResponse/Resultado/Cliente");
-			DataElement.createElementAsFirstChild(MbElement.TYPE_NAME,"nombre",nombreCliente);
-			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"apellido",apellidoCliente);
 			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"cedula",cedulaCliente);
-			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"direccion",direccionCliente);
-			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"fechaNacimiento",fechaNacimientoCliente);
 			DataElement.createElementAsLastChild(MbElement.TYPE_NAME,"password","********");
 			
 			outAssembly = new MbMessageAssembly(inAssembly, outMessage);

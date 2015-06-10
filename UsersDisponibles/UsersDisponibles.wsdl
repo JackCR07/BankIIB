@@ -9,6 +9,7 @@
   </wsdl:documentation>
   
   
+  
   <wsdl:types>
     <xsd:schema targetNamespace="http://UsersDisponibles">
       <xsd:include schemaLocation="UsersDisponibles_InlineSchema1.xsd"/>
@@ -22,20 +23,20 @@
   </wsdl:message>
   <wsdl:portType name="UsersDisponibles">
     <wsdl:operation name="operation1">
-      <wsdl:input message="tns:operation1RequestMsg" name="operation1Request"/>
-      <wsdl:output message="tns:operation1ResponseMsg" name="operation1Response"/>
+            <wsdl:input message="tns:operation1RequestMsg" name="operation1Request"/>
+            <wsdl:output message="tns:operation1ResponseMsg" name="operation1Response"/>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="UsersDisponiblesHttpBinding" type="tns:UsersDisponibles">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="operation1">
-      <soap:operation soapAction=""/>
-      <wsdl:input name="operation1Request">
-        <soap:body use="literal"/>
-      </wsdl:input>
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="operation1">
+            <soap:operation soapAction="http://UsersDisponibles/operation1"/>
+            <wsdl:input name="operation1Request">
+                <soap:body use="literal"/>
+            </wsdl:input>
       <wsdl:output name="operation1Response">
-        <soap:body use="literal"/>
-      </wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="UsersDisponiblesHttpService">

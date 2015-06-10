@@ -16,25 +16,21 @@
   </xs:element>
   <xs:element name="Cliente" type="tns:Cliente" />
   <xs:complexType name="Cliente">
-    <xs:sequence>
-    	<xs:element name="nombre" type="xs:string" nillable="false"
-    		minOccurs="0" maxOccurs="1" />
-    	<xs:element name="apellido" type="xs:string" nillable="false"
-    		minOccurs="0" maxOccurs="1" />
+    <xs:sequence>
     	<xs:element name="cedula" type="xs:string" nillable="false"
-    		minOccurs="0" maxOccurs="1" />
-    	<xs:element name="direccion" type="xs:string" nillable="false"
-    		minOccurs="0" maxOccurs="1" />
-    	<xs:element name="fechaNacimiento" type="xs:dateTime"
-    		nillable="false" minOccurs="0" maxOccurs="1" />
+    		minOccurs="0" maxOccurs="1" />
     	<xs:element name="password" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Resultado" type="tns:Resultado" />
   <xs:complexType name="Resultado">
     <xs:sequence>
-      <xs:element name="Cliente" type="tns:Cliente" nillable="false" minOccurs="0" maxOccurs="1" />
-      <xs:element name="estado" type="xs:int" nillable="false" minOccurs="0" maxOccurs="1" />
+    	<xs:element name="Cliente" type="tns:Cliente" nillable="false"
+    		minOccurs="0" maxOccurs="1" />
+    	<xs:element name="estado" type="xs:int" nillable="false"
+    		minOccurs="0" maxOccurs="1" />
+    	<xs:element name="nombreCliente" type="xs:string"></xs:element>
+    	<xs:element name="usuarioCliente" type="xs:string"></xs:element>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
